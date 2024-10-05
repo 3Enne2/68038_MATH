@@ -1,0 +1,28 @@
+% Define the complex number
+z = 4 - 5*1i;
+
+% Convert to polar form
+r = abs(z); % Magnitude
+theta = angle(z); % Angle in radians
+
+% Number of roots
+n = 3;
+
+% Calculate the cube roots using De Moivre's theorem
+roots = zeros(1, n);
+for k = 0:n-1
+    roots(k+1) = r^(1/n) * exp(1i * (theta + 2*pi*k)/n);
+end
+
+% Display the roots
+disp('The three cube roots are:');
+disp(roots);
+
+% Plotting the roots
+figure;
+polarplot(angle(roots), abs(roots), 'o');
+title('Cube Roots of the Complex Number 4 - 5j');
+ax = gca;
+ax.ThetaTickLabel = {}; % Remove theta labels
+ax.RLim = [0 max(abs(roots)) + 1]; % Set radius limits
+grid on;
